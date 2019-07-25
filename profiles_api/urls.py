@@ -8,6 +8,10 @@ router.register('profile',views.UserProfileViewSet) #3
 
 urlpatterns = [
     path('hello-view/', views.HelloApiView.as_view()),
-    #path('', views.Home.index,name='index'),
+    path('login/', views.UserLoginApiView.as_view()),
     path('', include(router.urls))  #2
 ]
+
+
+# ลองกำหนด รับค่า localhost:8000
+#path('', views.Home.index,name='index'),
