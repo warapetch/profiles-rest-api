@@ -21,6 +21,8 @@ from profiles_api import views
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('api/', include('profiles_api.urls')),
+    # ประกาศ เพื่อให้มองตามค่าที่กำหนดใน profiled_api\urls.py ด้วย
     path('', include('profiles_api.urls')),
-    #path('', views.Home.index,name='index') # URL ว่างๆ localhost:8000
+    # ประกาศ เพื่อรับค่า URLว่างๆ localhost:8000 มองตรงไปที่ method index
+    #path('', views.Home.index,name='index')
 ]
