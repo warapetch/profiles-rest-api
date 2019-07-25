@@ -16,8 +16,11 @@ Including another URLconf
 from django.contrib import admin
 from django.urls import path
 from django.urls import path, include
+from profiles_api import views
 
 urlpatterns = [
     path('admin/', admin.site.urls),
-    path('api/', include('profiles_api.urls'))
+    path('api/', include('profiles_api.urls')),
+    path('', include('profiles_api.urls')),
+    #path('', views.Home.index,name='index') # URL ว่างๆ localhost:8000
 ]
