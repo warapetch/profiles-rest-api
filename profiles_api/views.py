@@ -6,6 +6,7 @@ from rest_framework.response import Response
 from rest_framework import status           #2.0
 from rest_framework import viewsets         #4.0
 from rest_framework.authentication import TokenAuthentication #6.0
+from rest_framework import filters          #7.0
 
 from profiles_api import my_serializers     #2.0
 from profiles_api import my_permissions     #6.0
@@ -112,11 +113,12 @@ class HelloViewSet(viewsets.ViewSet):   #4.1
 # ---------------------------------------------
 class UserProfileViewSet(viewsets.ModelViewSet):
     """Handle creating, creating and updating profiles"""
-    serializer_class = my_serializers.UserProfileSerializer
-    queryset = models.UserProfile.objects.all()
-    authentication_classes = (TokenAuthentication,)
-    permission_classes = (my_permissions.UpdateOwnProfile,)
-
+    serializer_class = my_serializers.UserProfileSerializer     #5
+    queryset = models.UserProfile.objects.all()                 #5
+    authentication_classes = (TokenAuthentication,)             #6
+    permission_classes = (my_permissions.UpdateOwnProfile,)     #6
+    filter_backends = (filters.SearchFilter,)                   #7
+    search_fields = ('name','email',)                           #7
 
 # ---------------------------------------------
 # Home
